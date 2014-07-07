@@ -65,5 +65,14 @@
           (recur acc next-acc (+ k 1)))))))
         
 (defn cut-at-repetition [a-seq]
-  [":("])
+  (loop [the-seq a-seq
+         seen #{}
+         acc []]
+    (if
+      (empty? the-seq)
+      acc
+      (let [head (first the-seq)]
+        (if (contains? seen head)
+          acc
+          (recur (rest the-seq) (conj seen head) (conj acc head)))))))
 
