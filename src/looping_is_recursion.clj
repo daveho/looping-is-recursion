@@ -54,8 +54,16 @@
       (recur (rest the-seq) (toggle acc (first the-seq))))))
 
 (defn fast-fibo [n]
-  ":(")
-
+  (if (< n 2)
+    n
+    (loop [prev 0
+           acc 1
+           k 2]
+      (let [next-acc (+ prev acc)]
+        (if (= n k)
+          next-acc
+          (recur acc next-acc (+ k 1)))))))
+        
 (defn cut-at-repetition [a-seq]
   [":("])
 
